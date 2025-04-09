@@ -9,9 +9,14 @@
         </n-text>
       </n-card>
 
-      <n-grid :x-gap="20" :y-gap="8" cols="24">
-        <!-- 左侧个人信息卡片 -->
-        <n-grid-item :span="8">
+      <n-grid
+        :x-gap="screenConfig.gap"
+        :y-gap="8"
+        :cols="screenConfig.cols"
+        responsive="screen"
+      >
+        <!-- 个人信息卡片 -->
+        <n-grid-item :span="screenConfig.profileSpan">
           <n-card class="profile-card">
             <template v-if="loading">
               <n-skeleton circle size="large" class="avatar" />
@@ -53,7 +58,7 @@
         </n-grid-item>
 
         <!-- 右侧内容区域 -->
-        <n-grid-item :span="16">
+        <n-grid-item :span="screenConfig.contentSpan">
           <n-space vertical size="large">
             <!-- 关于我 -->
             <n-card title="關於我">
@@ -148,17 +153,49 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import {
   MailOutline,
   LocationOutline,
   CodeSlashOutline,
 } from "@vicons/ionicons5";
 import { useLoadingBar } from "naive-ui";
+import { useWindowSize } from "@vueuse/core";
+
+const { width } = useWindowSize();
 
 const color = ref("#2080f0");
 const loadingBar = useLoadingBar();
 const loading = ref(true);
+
+// 響應式配置
+const screenConfig = computed(() => {
+  // 手機
+  if (width.value <= 640) {
+    return {
+      cols: 1,
+      profileSpan: 1,
+      contentSpan: 1,
+      gap: 12,
+    };
+  }
+  // 平板
+  if (width.value <= 1024) {
+    return {
+      cols: 12,
+      profileSpan: 12,
+      contentSpan: 12,
+      gap: 16,
+    };
+  }
+  // 桌面
+  return {
+    cols: 24,
+    profileSpan: 8,
+    contentSpan: 16,
+    gap: 20,
+  };
+});
 
 onMounted(() => {
   loadingBar.start();
@@ -171,19 +208,18 @@ onMounted(() => {
 
 <style scoped lang="scss">
 @use "../assets/_variables.scss" as *;
+
+// 基礎樣式
 .home {
   height: 100%;
   overflow-y: auto;
-  padding: 10px;
-}
-:deep(.n-space) {
-  height: 100%;
-  overflow-y: auto;
+  padding: clamp(10px, 2vw, 20px);
 }
 
+// 頁面標題響應式
 .page-title {
   margin: 0;
-  font-size: 28px;
+  font-size: clamp(24px, 4vw, 28px);
   font-weight: 600;
   background: linear-gradient(45deg, #2080f0, #18a058);
   -webkit-background-clip: text;
@@ -194,52 +230,43 @@ onMounted(() => {
 .page-description {
   display: block;
   margin-top: 8px;
-  font-size: 16px;
+  font-size: clamp(14px, 2vw, 16px);
 }
 
-.project-card {
-  overflow: hidden;
-}
-
+// 個人資料卡片響應式
 .profile-card {
   text-align: center;
-  padding: 20px;
+  padding: clamp(15px, 3vw, 20px);
+
   .avatar {
-    width: 120px;
-    height: 120px;
+    width: clamp(80px, 15vw, 120px);
+    height: clamp(80px, 15vw, 120px);
     margin: 0 auto 16px;
   }
+
   .name {
     margin: 0;
-    font-size: 24px;
+    font-size: clamp(20px, 3vw, 24px);
     font-weight: 600;
   }
+
   .title {
     display: block;
     margin: 8px 0;
+    font-size: clamp(14px, 2vw, 16px);
     color: var(--n-text-color-3);
   }
+
   .info-item {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    font-size: clamp(12px, 1.5vw, 14px);
+
     .info-icon {
-      font-size: 18px;
+      font-size: clamp(16px, 2vw, 18px);
     }
   }
-}
-
-:deep(.n-card) {
-  background-color: var(--n-color);
-  transition: background-color 0.3s ease;
-}
-
-:deep(.n-progress) {
-  margin: 8px 0;
-}
-
-:deep(.n-list-item) {
-  padding: 12px 0;
 }
 </style>

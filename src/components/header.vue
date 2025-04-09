@@ -7,6 +7,7 @@
         </router-link>
       </div>
       <n-menu
+        v-if="!isMobile"
         mode="horizontal"
         :options="menuOptions"
         @update:value="handleMenuClick"
@@ -22,12 +23,20 @@
 </template>
 
 <script setup>
-import { h } from "vue";
+import { h, ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { NIcon } from "naive-ui";
-import { HomeOutline, PersonOutline, CallOutline } from "@vicons/ionicons5";
+import {
+  HomeOutline,
+  PersonOutline,
+  CallOutline,
+  MenuOutline,
+} from "@vicons/ionicons5";
+import { useWindowSize } from "@vueuse/core";
 
 const router = useRouter();
+const { width } = useWindowSize();
+const isMobileMenuOpen = ref(false);
 
 const emit = defineEmits(["toggleTheme"]);
 const toggle = () => {
@@ -65,6 +74,16 @@ const handleMenuClick = (key) => {
     router.push(menuItem.path);
   }
 };
+
+// 使用 computed 替代原本的 checkMobile 函數
+const isMobile = computed(() => {
+  const mobileWidth = width.value <= 768;
+  // 如果切換到桌面版，自動關閉手機選單
+  if (!mobileWidth) {
+    isMobileMenuOpen.value = false;
+  }
+  return mobileWidth;
+});
 </script>
 
 <style lang="scss" scoped>

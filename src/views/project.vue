@@ -15,7 +15,7 @@
         <n-grid-item>
           <n-card class="project-card" hoverable>
             <n-grid :cols="24" :x-gap="12">
-              <n-grid-item :span="12">
+              <n-grid-item :span="screenConfig.span">
                 <div class="project-image">
                   <n-image
                     width="100%"
@@ -26,7 +26,7 @@
                   />
                 </div>
               </n-grid-item>
-              <n-grid-item :span="12">
+              <n-grid-item :span="screenConfig.span">
                 <div class="project-content">
                   <n-h2>個人部落格網站</n-h2>
                   <n-tag type="success" class="project-tag">Vue 3</n-tag>
@@ -69,7 +69,7 @@
         <n-grid-item>
           <n-card class="project-card" hoverable>
             <n-grid :cols="24" :x-gap="12">
-              <n-grid-item :span="12">
+              <n-grid-item :span="screenConfig.span">
                 <div class="project-image">
                   <n-image
                     width="100%"
@@ -80,7 +80,7 @@
                   />
                 </div>
               </n-grid-item>
-              <n-grid-item :span="12">
+              <n-grid-item :span="screenConfig.span">
                 <div class="project-content">
                   <n-h2>電商平台</n-h2>
                   <n-tag type="success" class="project-tag">Vue 3</n-tag>
@@ -125,7 +125,7 @@
         <n-grid-item>
           <n-card class="project-card" hoverable>
             <n-grid :cols="24" :x-gap="12">
-              <n-grid-item :span="12">
+              <n-grid-item :span="screenConfig.span">
                 <div class="project-image">
                   <n-image
                     width="100%"
@@ -136,7 +136,7 @@
                   />
                 </div>
               </n-grid-item>
-              <n-grid-item :span="12">
+              <n-grid-item :span="screenConfig.span">
                 <div class="project-content">
                   <n-h2>任務管理系統</n-h2>
                   <n-tag type="success" class="project-tag">Vue 3</n-tag>
@@ -198,6 +198,21 @@ import {
   NTag,
 } from "naive-ui";
 import { LogoGithub, GlobeOutline } from "@vicons/ionicons5";
+import { useWindowSize } from "@vueuse/core";
+import { computed } from "vue";
+const { width } = useWindowSize();
+const screenConfig = computed(() => {
+  // 平板、手機
+  if (width.value <= 1024) {
+    return {
+      span: 24,
+    };
+  }
+  // 桌面
+  return {
+    span: 12,
+  };
+});
 
 const openLink = (url) => {
   window.open(url, "_blank");

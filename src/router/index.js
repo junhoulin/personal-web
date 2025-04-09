@@ -4,7 +4,7 @@ import Introdution from "../views/introdution.vue";
 import Project from "../views/project.vue";
 import Contact from "../views/contact.vue";
 const router = createRouter({
-  history: createWebHistory(""),
+  history: createWebHistory("/personal-web/"),
   routes: [
     {
       path: "/",
