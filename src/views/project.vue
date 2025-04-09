@@ -11,8 +11,7 @@
 
       <!-- 项目展示区 -->
       <n-grid :cols="1" :x-gap="12" :y-gap="12" responsive="screen">
-        <!-- 项目1 -->
-        <n-grid-item>
+        <n-grid-item v-for="(project, index) in projects" :key="index">
           <n-card class="project-card" hoverable>
             <n-grid :cols="24" :x-gap="12">
               <n-grid-item :span="screenConfig.span">
@@ -21,28 +20,33 @@
                     width="100%"
                     height="300"
                     object-fit="cover"
-                    src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
+                    :src="project.image"
                     preview-disabled
                   />
                 </div>
               </n-grid-item>
               <n-grid-item :span="screenConfig.span">
                 <div class="project-content">
-                  <n-h2>個人部落格網站</n-h2>
-                  <n-tag type="success" class="project-tag">Vue 3</n-tag>
-                  <n-tag type="info" class="project-tag">TypeScript</n-tag>
-                  <n-tag type="warning" class="project-tag">Naive UI</n-tag>
+                  <n-h2>{{ project.title }}</n-h2>
+                  <n-text class="project-time"
+                    >專案時間 : {{ project.time }}</n-text
+                  >
+                  <n-tag
+                    v-for="(tag, tagIndex) in project.tags"
+                    :key="tagIndex"
+                    :type="tag.type"
+                    class="project-tag"
+                  >
+                    {{ tag.name }}
+                  </n-tag>
                   <n-divider />
-                  <n-text>
-                    這是一個使用 Vue 3 和 TypeScript 開發的個人部落格網站，採用
-                    Naive UI 作為 UI 框架。
-                    網站具有響應式設計，支持深色/淺色主題切換，並實現了文章分類、標籤等功能。
-                  </n-text>
+                  <n-text>{{ project.description }}</n-text>
                   <n-divider />
                   <n-space>
                     <n-button
+                      v-if="project.github"
                       type="primary"
-                      @click="openLink('https://github.com/yourusername/blog')"
+                      @click="openLink(project.github)"
                     >
                       <template #icon>
                         <n-icon><LogoGithub /></n-icon>
@@ -50,120 +54,9 @@
                       GitHub
                     </n-button>
                     <n-button
+                      v-if="project.website"
                       type="info"
-                      @click="openLink('https://your-blog-site.com')"
-                    >
-                      <template #icon>
-                        <n-icon><GlobeOutline /></n-icon>
-                      </template>
-                      訪問網站
-                    </n-button>
-                  </n-space>
-                </div>
-              </n-grid-item>
-            </n-grid>
-          </n-card>
-        </n-grid-item>
-
-        <!-- 项目2 -->
-        <n-grid-item>
-          <n-card class="project-card" hoverable>
-            <n-grid :cols="24" :x-gap="12">
-              <n-grid-item :span="screenConfig.span">
-                <div class="project-image">
-                  <n-image
-                    width="100%"
-                    height="300"
-                    object-fit="cover"
-                    src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
-                    preview-disabled
-                  />
-                </div>
-              </n-grid-item>
-              <n-grid-item :span="screenConfig.span">
-                <div class="project-content">
-                  <n-h2>電商平台</n-h2>
-                  <n-tag type="success" class="project-tag">Vue 3</n-tag>
-                  <n-tag type="info" class="project-tag">Vuex</n-tag>
-                  <n-tag type="warning" class="project-tag">Element Plus</n-tag>
-                  <n-divider />
-                  <n-text>
-                    這是一個電商平台的前端項目，使用 Vue 3 和 Vuex
-                    開發，實現了商品展示、購物車、訂單管理等功能。
-                    項目採用模塊化設計，具有良好的可擴展性和維護性。
-                  </n-text>
-                  <n-divider />
-                  <n-space>
-                    <n-button
-                      type="primary"
-                      @click="
-                        openLink('https://github.com/yourusername/ecommerce')
-                      "
-                    >
-                      <template #icon>
-                        <n-icon><LogoGithub /></n-icon>
-                      </template>
-                      GitHub
-                    </n-button>
-                    <n-button
-                      type="info"
-                      @click="openLink('https://your-ecommerce-site.com')"
-                    >
-                      <template #icon>
-                        <n-icon><GlobeOutline /></n-icon>
-                      </template>
-                      訪問網站
-                    </n-button>
-                  </n-space>
-                </div>
-              </n-grid-item>
-            </n-grid>
-          </n-card>
-        </n-grid-item>
-
-        <!-- 项目3 -->
-        <n-grid-item>
-          <n-card class="project-card" hoverable>
-            <n-grid :cols="24" :x-gap="12">
-              <n-grid-item :span="screenConfig.span">
-                <div class="project-image">
-                  <n-image
-                    width="100%"
-                    height="300"
-                    object-fit="cover"
-                    src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
-                    preview-disabled
-                  />
-                </div>
-              </n-grid-item>
-              <n-grid-item :span="screenConfig.span">
-                <div class="project-content">
-                  <n-h2>任務管理系統</n-h2>
-                  <n-tag type="success" class="project-tag">Vue 3</n-tag>
-                  <n-tag type="info" class="project-tag">Pinia</n-tag>
-                  <n-tag type="warning" class="project-tag">Tailwind CSS</n-tag>
-                  <n-divider />
-                  <n-text>
-                    這是一個任務管理系統，使用 Vue 3 和 Pinia 開發，採用
-                    Tailwind CSS 進行樣式設計。
-                    系統支持任務創建、編輯、刪除、標記完成等功能，並具有拖拽排序功能。
-                  </n-text>
-                  <n-divider />
-                  <n-space>
-                    <n-button
-                      type="primary"
-                      @click="
-                        openLink('https://github.com/yourusername/task-manager')
-                      "
-                    >
-                      <template #icon>
-                        <n-icon><LogoGithub /></n-icon>
-                      </template>
-                      GitHub
-                    </n-button>
-                    <n-button
-                      type="info"
-                      @click="openLink('https://your-task-manager.com')"
+                      @click="openLink(project.website)"
                     >
                       <template #icon>
                         <n-icon><GlobeOutline /></n-icon>
@@ -200,19 +93,73 @@ import {
 import { LogoGithub, GlobeOutline } from "@vicons/ionicons5";
 import { useWindowSize } from "@vueuse/core";
 import { computed } from "vue";
+
 const { width } = useWindowSize();
+
 const screenConfig = computed(() => {
-  // 平板、手機
   if (width.value <= 1024) {
     return {
       span: 24,
     };
   }
-  // 桌面
   return {
     span: 12,
   };
 });
+
+// 專案資料
+const projects = [
+  {
+    title: "個人部落格網站",
+    image: "https://temp-picture.s3.ap-northeast-1.amazonaws.com/temp1.png",
+    time: "2025.04",
+    tags: [
+      { type: "success", name: "Vue 3" },
+      { type: "info", name: "SCSS" },
+      { type: "warning", name: "JavaScript" },
+      { type: "warning", name: "Naive UI" },
+    ],
+    description:
+      "這是一個使用 Vue 3 開發的個人部落格網站，採用 Naive UI 作為 UI 框架。網站具有響應式設計，支持深色/淺色主題切換，並實現了文章分類、標籤等功能。",
+    github: "https://github.com/junhoulin/personal-web",
+    website: "https://junhoulin.github.io/personal-web/",
+  },
+  {
+    title: "電商平台",
+    image:
+      "https://temp-picture.s3.ap-northeast-1.amazonaws.com/shopping-store-img/banner.png",
+    time: "2025.02 - 2024.03",
+    tags: [
+      { type: "success", name: "NUXT 3" },
+      { type: "info", name: "Node.js" },
+      { type: "warning", name: "MongoDB" },
+      { type: "error", name: "AWS" },
+      { type: "default", name: "Ubuntu" },
+      { type: "success", name: "Nginx" },
+    ],
+    description: `這是一個全端電商平台，採用前後端分離架構。前端使用 NUXT 3 開發，實現了商品展示、購物車、訂單管理、會員系統等功能；
+    後端使用 Node.js + Express 建構 RESTful API，並使用 MongoDB 作為資料庫。
+    整個系統部署在 AWS EC2 (Ubuntu) 上，使用 Nginx 作為反向代理，並配置 SSL 證書實現 HTTPS 安全連接。
+    同時使用 Route 53 進行 DNS 管理，實現域名解析服務。`,
+    github: "https://github.com/junhoulin",
+    website: "https://yushinshop.com/",
+  },
+  {
+    title: "排球預約平台",
+    image: "https://temp-picture.s3.ap-northeast-1.amazonaws.com/temp2.png",
+    time: "2024.11 - 2024.12",
+    tags: [
+      { type: "success", name: "Vue 3" },
+      { type: "warning", name: "JavaScript" },
+    ],
+    description:
+      "這是一個排球場地預約平台，使用 Vue 3 生態系統開發，包含 Vue Router 進行路由管理，" +
+      "，系統功能包括：場地預約、地點查詢等。" +
+      "，並實現響應式設計，讓使用者在各種設備上都能方便預約場地。",
+    github: "https://github.com/junhoulin/VUE_finalProject",
+    website: "https://junhoulin.github.io/VUE_finalProject/#/",
+  },
+];
 
 const openLink = (url) => {
   window.open(url, "_blank");
@@ -255,7 +202,6 @@ const openLink = (url) => {
 .project-image {
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -275,6 +221,13 @@ const openLink = (url) => {
 .project-tag {
   margin-right: 8px;
   margin-bottom: 8px;
+}
+
+.project-time {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--n-text-color-3);
+  font-size: 14px;
 }
 
 :deep(.n-card) {

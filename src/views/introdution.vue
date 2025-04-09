@@ -106,6 +106,10 @@ const photos = [
 .photo-card {
   overflow: hidden;
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     transform: translateY(-5px);

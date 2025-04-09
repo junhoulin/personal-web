@@ -20,6 +20,7 @@ import {
   SettingsOutline,
   FolderOutline,
   CalendarOutline,
+  CallOutline,
 } from "@vicons/ionicons5";
 
 const router = useRouter();
@@ -60,6 +61,12 @@ const menuOptions = [
         path: "/categories/life",
       },
     ],
+  },
+  {
+    label: "聯絡",
+    key: "contact",
+    icon: renderIcon(CallOutline),
+    path: "/contact",
   },
   {
     label: "設置",
