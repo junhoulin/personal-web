@@ -1,11 +1,28 @@
 <script setup>
 import Header from "./components/header.vue";
 import Side from "./components/side.vue";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { darkTheme, lightTheme } from "naive-ui";
+import { useWindowSize } from "@vueuse/core";
 
 const isDark = ref(true); // 新增一個布林值表示目前是不是暗黑主題
 const theme = ref(darkTheme);
+
+const { width } = useWindowSize();
+
+// 控制側邊欄收合
+const collapsed = ref(false);
+
+// 添加處理收合的函數
+const handleCollapse = (value) => {
+  collapsed.value = value;
+};
+
+onMounted(() => {
+  if (width.value <= 720) {
+    collapsed.value = true;
+  }
+});
 
 const toggleTheme = () => {
   isDark.value = !isDark.value;
@@ -26,9 +43,12 @@ const toggleTheme = () => {
                   <n-layout-sider
                     bordered
                     collapse-mode="width"
-                    :collapsed-width="1"
+                    :collapsed="collapsed"
+                    :collapsed-width="4"
                     :width="240"
                     show-trigger
+                    @collapse="handleCollapse(true)"
+                    @expand="handleCollapse(false)"
                     class="sider"
                   >
                     <Side />
