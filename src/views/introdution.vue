@@ -18,24 +18,6 @@ const photos = [
     date: "2023-10-05",
     description: "辦公室的一天，與同事們的歡樂時光。",
   },
-  {
-    src: "https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg",
-    title: "家庭聚會",
-    date: "2023-12-25",
-    description: "聖誕節的家庭團聚，溫馨的時刻。",
-  },
-  {
-    src: "https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel5.jpeg",
-    title: "興趣愛好",
-    date: "2024-01-15",
-    description: "閒暇時光的興趣活動，放鬆心情。",
-  },
-  {
-    src: "https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel6.jpeg",
-    title: "學習時刻",
-    date: "2024-02-20",
-    description: "持續學習，不斷進步的過程。",
-  },
 ];
 </script>
 

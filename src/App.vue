@@ -1,4 +1,5 @@
 <script setup>
+import MouseEffect from "./components/MouseEffect.vue";
 import Header from "./components/header.vue";
 import Side from "./components/side.vue";
 import { ref, onMounted } from "vue";
@@ -32,6 +33,7 @@ const toggleTheme = () => {
 
 <template>
   <n-config-provider :theme="theme">
+    <MouseEffect />
     <n-loading-bar-provider>
       <n-message-provider>
         <n-notification-provider>
