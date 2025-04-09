@@ -159,6 +159,21 @@ const projects = [
     github: "https://github.com/junhoulin/VUE_finalProject",
     website: "https://junhoulin.github.io/VUE_finalProject/#/",
   },
+  {
+    title: "飯店預約系統",
+    image: "https://temp-picture.s3.ap-northeast-1.amazonaws.com/temp2.png",
+    time: "2025.01",
+    tags: [
+      { type: "success", name: "NUXT 3" },
+      { type: "warning", name: "JavaScript" },
+    ],
+    description:
+      "這是一個飯店預約系統，使用 NUXT 3 開發，包含 NUXT Router 進行路由管理，" +
+      "，系統功能包括：場地預約、地點查詢等。" +
+      "，並實現響應式設計，讓使用者在各種設備上都能方便預約場地。",
+    github: "https://github.com/junhoulin/nuxt3-demo",
+    website: "https://nuxt3-demo-d241.onrender.com/",
+  },
 ];
 
 const openLink = (url) => {
