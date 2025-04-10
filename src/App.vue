@@ -80,7 +80,6 @@
 
   :deep(.n-layout),
   :deep(.n-layout-header),
-  :deep(.n-layout-sider),
   :deep(.n-layout-content),
   :deep(.n-card),
   :deep(.n-menu),
