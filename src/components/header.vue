@@ -14,7 +14,12 @@
       />
       <div class="user-section">
         <n-space>
-          <n-button type="primary" ghost> 中文 </n-button>
+          <n-popover trigger="hover">
+            <template #trigger>
+              <n-button type="primary" ghost> 中文 </n-button>
+            </template>
+            <span>這個功能還沒做好還沒那麼快不要急</span>
+          </n-popover>
           <n-button type="primary" @click="toggle"> 主題 </n-button>
         </n-space>
       </div>
@@ -108,7 +113,7 @@
     }
     &:hover {
       h2 {
-        color: var(--n-primary-color);
+        color: green;
       }
     }
   }

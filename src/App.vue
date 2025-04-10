@@ -78,6 +78,22 @@
     overflow: hidden;
   }
 
+  :deep(.n-layout),
+  :deep(.n-layout-header),
+  :deep(.n-layout-sider),
+  :deep(.n-layout-content),
+  :deep(.n-card),
+  :deep(.n-menu),
+  :deep(.n-button),
+  :deep(.n-input),
+  :deep(.n-select),
+  :deep(.n-tag) {
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
   .main-layout {
     height: calc(100vh - 64px);
     overflow: hidden;

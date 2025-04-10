@@ -1,13 +1,56 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-TW">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="./src/assets/icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue</title>
+    <title>林晉豪 | 個人網站 - 軟體工程師部落格</title>
+    <meta
+      name="description"
+      content="我是一名軟體工程師，這是我的個人網站。展示我的作品集、技能和經歷。"
+    />
+    <meta name="keywords" content="全端開發, Vue.js, 網頁設計, 個人作品集" />
+    <meta name="author" content="林晉豪" />
+    <meta property="og:title" content="林晉豪 | 個人網站" />
+    <meta property="og:description" content="軟體工程師個人作品集與經歷展示" />
+    <meta
+      property="og:image"
+      content="https://temp-picture.s3.ap-northeast-1.amazonaws.com/temp1.png"
+    />
+    <meta property="og:url" content="junhoulin.github.io/personal-web/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="林晉豪 | 個人網站" />
+    <meta name="twitter:description" content="軟體工程師個人作品集與經歷展示" />
+    <meta name="robots" content="index, follow" />
+    <link
+      rel="preload"
+      href="/fonts/your-font.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href="junhoulin.github.io/personal-web/" />
   </head>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "林晉豪",
+        "url": "https://junhoulin.github.io/personal-web/",
+        "jobTitle": "軟體工程師",
+        "description": "專注於 Vue.js 開發的軟體工程師",
+        "image": "https://temp-picture.s3.ap-northeast-1.amazonaws.com/temp1.png",
+        "sameAs": [
+          "https://github.com/junhoulin",
+          "https://linkedin.com/in/junhoulin"
+        ]
+      }
+    </script>
   </body>
 </html>
