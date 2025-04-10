@@ -153,120 +153,120 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
-import {
-  MailOutline,
-  LocationOutline,
-  CodeSlashOutline,
-} from "@vicons/ionicons5";
-import { useLoadingBar } from "naive-ui";
-import { useWindowSize } from "@vueuse/core";
+  import { ref, onMounted, computed } from 'vue';
+  import {
+    MailOutline,
+    LocationOutline,
+    CodeSlashOutline
+  } from '@vicons/ionicons5';
+  import { useLoadingBar } from 'naive-ui';
+  import { useWindowSize } from '@vueuse/core';
 
-const { width } = useWindowSize();
+  const { width } = useWindowSize();
 
-const color = ref("#2080f0");
-const loadingBar = useLoadingBar();
-const loading = ref(true);
+  const color = ref('#2080f0');
+  const loadingBar = useLoadingBar();
+  const loading = ref(true);
 
-// 響應式配置
-const screenConfig = computed(() => {
-  // 手機
-  if (width.value <= 640) {
+  // 響應式配置
+  const screenConfig = computed(() => {
+    // 手機
+    if (width.value <= 640) {
+      return {
+        cols: 1,
+        profileSpan: 1,
+        contentSpan: 1,
+        gap: 12
+      };
+    }
+    // 平板
+    if (width.value <= 1024) {
+      return {
+        cols: 12,
+        profileSpan: 12,
+        contentSpan: 12,
+        gap: 16
+      };
+    }
+    // 桌面
     return {
-      cols: 1,
-      profileSpan: 1,
-      contentSpan: 1,
-      gap: 12,
+      cols: 24,
+      profileSpan: 8,
+      contentSpan: 16,
+      gap: 20
     };
-  }
-  // 平板
-  if (width.value <= 1024) {
-    return {
-      cols: 12,
-      profileSpan: 12,
-      contentSpan: 12,
-      gap: 16,
-    };
-  }
-  // 桌面
-  return {
-    cols: 24,
-    profileSpan: 8,
-    contentSpan: 16,
-    gap: 20,
-  };
-});
+  });
 
-onMounted(() => {
-  loadingBar.start();
-  setTimeout(() => {
-    loading.value = false;
-    loadingBar.finish();
-  }, 1500);
-});
+  onMounted(() => {
+    loadingBar.start();
+    setTimeout(() => {
+      loading.value = false;
+      loadingBar.finish();
+    }, 1500);
+  });
 </script>
 
 <style scoped lang="scss">
-@use "../assets/_variables.scss" as *;
+  @use '../assets/_variables.scss' as *;
 
-// 基礎樣式
-.home {
-  height: 100%;
-  overflow-y: auto;
-  padding: clamp(10px, 2vw, 20px);
-}
-
-// 頁面標題響應式
-.page-title {
-  margin: 0;
-  font-size: clamp(24px, 4vw, 28px);
-  font-weight: 600;
-  background: linear-gradient(45deg, #2080f0, #18a058);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.page-description {
-  display: block;
-  margin-top: 8px;
-  font-size: clamp(14px, 2vw, 16px);
-}
-
-// 個人資料卡片響應式
-.profile-card {
-  text-align: center;
-  padding: clamp(15px, 3vw, 20px);
-
-  .avatar {
-    width: clamp(80px, 15vw, 120px);
-    height: clamp(80px, 15vw, 120px);
-    margin: 0 auto 16px;
+  // 基礎樣式
+  .home {
+    height: 100%;
+    overflow-y: auto;
+    padding: clamp(10px, 2vw, 20px);
   }
 
-  .name {
+  // 頁面標題響應式
+  .page-title {
     margin: 0;
-    font-size: clamp(20px, 3vw, 24px);
+    font-size: clamp(24px, 4vw, 28px);
     font-weight: 600;
+    background: linear-gradient(45deg, #2080f0, #18a058);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  .title {
+  .page-description {
     display: block;
-    margin: 8px 0;
+    margin-top: 8px;
     font-size: clamp(14px, 2vw, 16px);
-    color: var(--n-text-color-3);
   }
 
-  .info-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: clamp(12px, 1.5vw, 14px);
+  // 個人資料卡片響應式
+  .profile-card {
+    text-align: center;
+    padding: clamp(15px, 3vw, 20px);
 
-    .info-icon {
-      font-size: clamp(16px, 2vw, 18px);
+    .avatar {
+      width: clamp(80px, 15vw, 120px);
+      height: clamp(80px, 15vw, 120px);
+      margin: 0 auto 16px;
+    }
+
+    .name {
+      margin: 0;
+      font-size: clamp(20px, 3vw, 24px);
+      font-weight: 600;
+    }
+
+    .title {
+      display: block;
+      margin: 8px 0;
+      font-size: clamp(14px, 2vw, 16px);
+      color: var(--n-text-color-3);
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: clamp(12px, 1.5vw, 14px);
+
+      .info-icon {
+        font-size: clamp(16px, 2vw, 18px);
+      }
     }
   }
-}
 </style>

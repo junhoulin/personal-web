@@ -76,191 +76,191 @@
 </template>
 
 <script setup>
-import {
-  NCard,
-  NSpace,
-  NGrid,
-  NGridItem,
-  NH1,
-  NH2,
-  NText,
-  NDivider,
-  NButton,
-  NIcon,
-  NImage,
-  NTag,
-} from "naive-ui";
-import { LogoGithub, GlobeOutline } from "@vicons/ionicons5";
-import { useWindowSize } from "@vueuse/core";
-import { computed } from "vue";
+  import {
+    NCard,
+    NSpace,
+    NGrid,
+    NGridItem,
+    NH1,
+    NH2,
+    NText,
+    NDivider,
+    NButton,
+    NIcon,
+    NImage,
+    NTag
+  } from 'naive-ui';
+  import { LogoGithub, GlobeOutline } from '@vicons/ionicons5';
+  import { useWindowSize } from '@vueuse/core';
+  import { computed } from 'vue';
 
-const { width } = useWindowSize();
+  const { width } = useWindowSize();
 
-const screenConfig = computed(() => {
-  if (width.value <= 1024) {
+  const screenConfig = computed(() => {
+    if (width.value <= 1024) {
+      return {
+        span: 24
+      };
+    }
     return {
-      span: 24,
+      span: 12
     };
-  }
-  return {
-    span: 12,
-  };
-});
+  });
 
-// 專案資料
-const projects = [
-  {
-    title: "個人部落格網站",
-    image: "https://temp-picture.s3.ap-northeast-1.amazonaws.com/temp1.png",
-    time: "2025.04",
-    tags: [
-      { type: "success", name: "Vue 3" },
-      { type: "info", name: "SCSS" },
-      { type: "warning", name: "JavaScript" },
-      { type: "warning", name: "Naive UI" },
-    ],
-    description:
-      "這是一個使用 Vue 3 開發的個人部落格網站，採用 Naive UI 作為 UI 框架。網站具有響應式設計，支持深色/淺色主題切換，並實現了文章分類、標籤等功能。",
-    github: "https://github.com/junhoulin/personal-web",
-    website: "https://junhoulin.github.io/personal-web/",
-  },
-  {
-    title: "電商平台",
-    image:
-      "https://temp-picture.s3.ap-northeast-1.amazonaws.com/shopping-store-img/banner.png",
-    time: "2025.02 - 2024.03",
-    tags: [
-      { type: "success", name: "NUXT 3" },
-      { type: "info", name: "Node.js" },
-      { type: "warning", name: "MongoDB" },
-      { type: "error", name: "AWS" },
-      { type: "default", name: "Ubuntu" },
-      { type: "success", name: "Nginx" },
-    ],
-    description: `這是一個全端電商平台，採用前後端分離架構。前端使用 NUXT 3 開發，實現了商品展示、購物車、訂單管理、會員系統等功能；
+  // 專案資料
+  const projects = [
+    {
+      title: '個人部落格網站',
+      image: 'https://temp-picture.s3.ap-northeast-1.amazonaws.com/temp1.png',
+      time: '2025.04',
+      tags: [
+        { type: 'success', name: 'Vue 3' },
+        { type: 'info', name: 'SCSS' },
+        { type: 'warning', name: 'JavaScript' },
+        { type: 'warning', name: 'Naive UI' }
+      ],
+      description:
+        '這是一個使用 Vue 3 開發的個人部落格網站，採用 Naive UI 作為 UI 框架。網站具有響應式設計，支持深色/淺色主題切換，並實現了文章分類、標籤等功能。',
+      github: 'https://github.com/junhoulin/personal-web',
+      website: 'https://junhoulin.github.io/personal-web/'
+    },
+    {
+      title: '電商平台',
+      image:
+        'https://temp-picture.s3.ap-northeast-1.amazonaws.com/shopping-store-img/banner.png',
+      time: '2025.02 - 2025.03',
+      tags: [
+        { type: 'success', name: 'NUXT 3' },
+        { type: 'info', name: 'Node.js' },
+        { type: 'warning', name: 'MongoDB' },
+        { type: 'error', name: 'AWS' },
+        { type: 'default', name: 'Ubuntu' },
+        { type: 'success', name: 'Nginx' }
+      ],
+      description: `這是一個全端電商平台，採用前後端分離架構。前端使用 NUXT 3 開發，實現了商品展示、購物車、訂單管理、會員系統等功能；
     後端使用 Node.js + Express 建構 RESTful API，並使用 MongoDB 作為資料庫。
     整個系統部署在 AWS EC2 (Ubuntu) 上，使用 Nginx 作為反向代理，並配置 SSL 證書實現 HTTPS 安全連接。
     同時使用 Route 53 進行 DNS 管理，實現域名解析服務。`,
-    github: "https://github.com/junhoulin",
-    website: "https://yushinshop.com/",
-  },
-  {
-    title: "排球預約平台",
-    image: "https://temp-picture.s3.ap-northeast-1.amazonaws.com/temp2.png",
-    time: "2024.11 - 2024.12",
-    tags: [
-      { type: "success", name: "Vue 3" },
-      { type: "warning", name: "JavaScript" },
-    ],
-    description:
-      "這是一個排球場地預約平台，使用 Vue 3 生態系統開發，包含 Vue Router 進行路由管理，" +
-      "，系統功能包括：場地預約、地點查詢等。" +
-      "，並實現響應式設計，讓使用者在各種設備上都能方便預約場地。",
-    github: "https://github.com/junhoulin/VUE_finalProject",
-    website: "https://junhoulin.github.io/VUE_finalProject/#/",
-  },
-  {
-    title: "飯店預約系統",
-    image: "https://temp-picture.s3.ap-northeast-1.amazonaws.com/temp2.png",
-    time: "2025.01",
-    tags: [
-      { type: "success", name: "NUXT 3" },
-      { type: "warning", name: "JavaScript" },
-    ],
-    description:
-      "這是一個飯店預約系統，使用 NUXT 3 開發，包含 NUXT Router 進行路由管理，" +
-      "，系統功能包括：場地預約、地點查詢等。" +
-      "，並實現響應式設計，讓使用者在各種設備上都能方便預約場地。",
-    github: "https://github.com/junhoulin/nuxt3-demo",
-    website: "https://nuxt3-demo-d241.onrender.com/",
-  },
-];
+      github: 'https://github.com/junhoulin',
+      website: 'https://yushinshop.com/'
+    },
+    {
+      title: '排球預約平台',
+      image: 'https://temp-picture.s3.ap-northeast-1.amazonaws.com/temp2.png',
+      time: '2024.11 - 2024.12',
+      tags: [
+        { type: 'success', name: 'Vue 3' },
+        { type: 'warning', name: 'JavaScript' }
+      ],
+      description:
+        '這是一個排球場地預約平台，使用 Vue 3 生態系統開發，包含 Vue Router 進行路由管理，' +
+        '，系統功能包括：場地預約、地點查詢等。' +
+        '，並實現響應式設計，讓使用者在各種設備上都能方便預約場地。',
+      github: 'https://github.com/junhoulin/VUE_finalProject',
+      website: 'https://junhoulin.github.io/VUE_finalProject/#/'
+    },
+    {
+      title: '飯店預約系統',
+      image: 'https://temp-picture.s3.ap-northeast-1.amazonaws.com/temp3.png',
+      time: '2025.01',
+      tags: [
+        { type: 'success', name: 'NUXT 3' },
+        { type: 'warning', name: 'JavaScript' }
+      ],
+      description:
+        '這是我參加六角學院的 NUXT3 課程作品，我將VUE3版本改寫為 NUXT 3 版本，藉此學習 NUXT 3 框架。' +
+        '系統功能包含房型瀏覽、訂房預約、訂單查詢等功能，' +
+        '並實現響應式設計，讓使用者在各種設備上都能方便使用。',
+      github: 'https://github.com/junhoulin/nuxt3-demo',
+      website: 'https://nuxt3-demo-d241.onrender.com/'
+    }
+  ];
 
-const openLink = (url) => {
-  window.open(url, "_blank");
-};
+  const openLink = url => {
+    window.open(url, '_blank');
+  };
 </script>
 
 <style scoped lang="scss">
-@use "../assets/_variables.scss" as *;
-.project {
-  height: 100%;
-  overflow: hidden;
-}
-
-:deep(.n-space) {
-  height: 100%;
-  overflow-y: auto;
-}
-
-.page-title {
-  margin: 0;
-  font-size: 28px;
-  font-weight: 600;
-  background: linear-gradient(45deg, #2080f0, #18a058);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.page-description {
-  display: block;
-  margin-top: 8px;
-  font-size: 16px;
-  color: var(--n-text-color-2);
-}
-
-.project-card {
-  overflow: hidden;
-}
-
-.project-image {
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 0;
-}
-
-.project-content {
-  padding: 16px;
-
-  h2 {
-    margin: 0 0 12px 0;
-    font-size: 22px;
-    font-weight: 600;
+  @use '../assets/_variables.scss' as *;
+  .project {
+    height: 100%;
+    overflow: hidden;
   }
-}
 
-.project-tag {
-  margin-right: 8px;
-  margin-bottom: 8px;
-}
+  :deep(.n-space) {
+    height: 100%;
+    overflow-y: auto;
+  }
 
-.project-time {
-  display: block;
-  margin-bottom: 12px;
-  color: var(--n-text-color-3);
-  font-size: 14px;
-}
+  .page-title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+    background: linear-gradient(45deg, #2080f0, #18a058);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-:deep(.n-card) {
-  background-color: var(--n-color);
-  transition: background-color 0.3s ease;
-}
+  .page-description {
+    display: block;
+    margin-top: 8px;
+    font-size: 16px;
+    color: var(--n-text-color-2);
+  }
 
-:deep(.n-button) {
-  margin-top: 8px;
-}
-
-@media (max-width: 768px) {
   .project-card {
-    .n-grid-item {
-      &:first-child {
-        margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .project-image {
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  .project-content {
+    padding: 16px;
+
+    h2 {
+      margin: 0 0 12px 0;
+      font-size: 22px;
+      font-weight: 600;
+    }
+  }
+
+  .project-tag {
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+
+  .project-time {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--n-text-color-3);
+    font-size: 14px;
+  }
+
+  :deep(.n-card) {
+    background-color: var(--n-color);
+    transition: background-color 0.3s ease;
+  }
+
+  :deep(.n-button) {
+    margin-top: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .project-card {
+      .n-grid-item {
+        &:first-child {
+          margin-bottom: 16px;
+        }
       }
     }
   }
-}
 </style>

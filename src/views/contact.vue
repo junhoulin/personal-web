@@ -61,183 +61,182 @@
 </template>
 
 <script setup>
-import {
-  MailOutline,
-  CallOutline,
-  LocationOutline,
-  LogoGithub,
-  LogoLinkedin,
-  LogoTwitter,
-} from "@vicons/ionicons5";
+  import {
+    MailOutline,
+    CallOutline,
+    LocationOutline,
+    LogoGithub,
+    LogoInstagram
+  } from '@vicons/ionicons5';
+  import { Line } from '@vicons/fa';
+  const contactInfo = [
+    {
+      icon: MailOutline,
+      label: '電子郵件',
+      value: 'yy6313531@gmail.com'
+    },
+    {
+      icon: CallOutline,
+      label: '電話',
+      value: '+886 978 572 009'
+    },
+    {
+      icon: LocationOutline,
+      label: '地址',
+      value: '台灣高雄市阿蓮區'
+    }
+  ];
 
-const contactInfo = [
-  {
-    icon: MailOutline,
-    label: "電子郵件",
-    value: "your.email@example.com",
-  },
-  {
-    icon: CallOutline,
-    label: "電話",
-    value: "+886 123 456 789",
-  },
-  {
-    icon: LocationOutline,
-    label: "地址",
-    value: "台灣台北市",
-  },
-];
+  const socialMedia = [
+    {
+      icon: LogoGithub,
+      label: 'GitHub',
+      value: 'github.com/junhoulin',
+      link: 'https://github.com/junhoulin'
+    },
+    {
+      icon: LogoInstagram,
+      label: 'LinkedIn',
+      value: 'www.instagram.com/jhl.010988/',
+      link: 'https://www.instagram.com/jhl.010988/'
+    },
+    {
+      icon: Line,
+      label: 'Line',
+      value: 'yy6313531',
+      link: ''
+    }
+  ];
 
-const socialMedia = [
-  {
-    icon: LogoGithub,
-    label: "GitHub",
-    value: "github.com/yourusername",
-    link: "https://github.com/yourusername",
-  },
-  {
-    icon: LogoLinkedin,
-    label: "LinkedIn",
-    value: "linkedin.com/in/yourusername",
-    link: "https://linkedin.com/in/yourusername",
-  },
-  {
-    icon: LogoTwitter,
-    label: "Twitter",
-    value: "@yourusername",
-    link: "https://twitter.com/yourusername",
-  },
-];
-
-const openLink = (url) => {
-  window.open(url, "_blank");
-};
+  const openLink = url => {
+    window.open(url, '_blank');
+  };
 </script>
 
 <style scoped lang="scss">
-.contact {
-  height: 100%;
-  overflow: hidden;
-}
+  .contact {
+    height: 100%;
+    overflow: hidden;
+  }
 
-:deep(.n-space) {
-  height: 100%;
-  overflow-y: auto;
-}
+  :deep(.n-space) {
+    height: 100%;
+    overflow-y: auto;
+  }
 
-.page-title {
-  margin: 0;
-  font-size: 28px;
-  font-weight: 600;
-  background: linear-gradient(45deg, #2080f0, #18a058);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.page-description {
-  display: block;
-  margin-top: 8px;
-  font-size: 16px;
-  color: var(--n-text-color-2);
-}
-
-.contact-card,
-.social-card,
-.map-card {
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.contact-info,
-.social-info {
-  padding: 16px;
-}
-
-.contact-title,
-.social-title,
-.map-title {
-  margin: 0 0 16px 0;
-  font-size: 22px;
-  font-weight: 600;
-  position: relative;
-  padding-bottom: 8px;
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 50px;
-    height: 3px;
+  .page-title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
     background: linear-gradient(45deg, #2080f0, #18a058);
-    animation: width 1s ease forwards;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-}
 
-@keyframes width {
-  0% {
-    width: 10px;
+  .page-description {
+    display: block;
+    margin-top: 8px;
+    font-size: 16px;
+    color: var(--n-text-color-2);
   }
-  100% {
-    width: 100px;
+
+  .contact-card,
+  .social-card,
+  .map-card {
+    overflow: hidden;
+    transition: all 0.3s ease;
   }
-}
 
-.contact-item,
-.social-item {
-  display: flex;
-  align-items: center;
-  padding: 12px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--n-item-color-hover);
-    transform: translateX(10px);
+  .contact-info,
+  .social-info {
+    padding: 16px;
   }
-}
 
-.social-item {
-  &:hover {
-    .social-icon {
-      transform: scale(1.2);
+  .contact-title,
+  .social-title,
+  .map-title {
+    margin: 0 0 16px 0;
+    font-size: 22px;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 8px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(45deg, #2080f0, #18a058);
+      animation: width 1s ease forwards;
     }
   }
-}
 
-.contact-icon,
-.social-icon {
-  font-size: 24px;
-  margin-right: 16px;
-  color: var(--n-primary-color);
-  transition: all 0.3s ease;
-}
-
-.contact-text,
-.social-text {
-  flex: 1;
-}
-
-.contact-label,
-.social-label {
-  display: block;
-  font-size: 14px;
-  color: var(--n-text-color-2);
-  margin-bottom: 4px;
-}
-
-.contact-value,
-.social-value {
-  display: block;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-@media (max-width: 768px) {
-  :deep(.n-grid) {
-    grid-template-columns: repeat(1, 1fr) !important;
+  @keyframes width {
+    0% {
+      width: 10px;
+    }
+    100% {
+      width: 100px;
+    }
   }
-}
+
+  .contact-item,
+  .social-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--n-item-color-hover);
+      transform: translateX(10px);
+    }
+  }
+
+  .social-item {
+    &:hover {
+      .social-icon {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .contact-icon,
+  .social-icon {
+    font-size: 24px;
+    margin-right: 16px;
+    color: var(--n-primary-color);
+    transition: all 0.3s ease;
+  }
+
+  .contact-text,
+  .social-text {
+    flex: 1;
+  }
+
+  .contact-label,
+  .social-label {
+    display: block;
+    font-size: 14px;
+    color: var(--n-text-color-2);
+    margin-bottom: 4px;
+  }
+
+  .contact-value,
+  .social-value {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    :deep(.n-grid) {
+      grid-template-columns: repeat(1, 1fr) !important;
+    }
+  }
 </style>

@@ -1,34 +1,34 @@
 <script setup>
-import MouseEffect from "./components/MouseEffect.vue";
-import Header from "./components/header.vue";
-import Side from "./components/side.vue";
-import { ref, onMounted } from "vue";
-import { darkTheme, lightTheme } from "naive-ui";
-import { useWindowSize } from "@vueuse/core";
+  import MouseEffect from './components/MouseEffect.vue';
+  import Header from './components/header.vue';
+  import Side from './components/side.vue';
+  import { ref, onMounted } from 'vue';
+  import { darkTheme, lightTheme } from 'naive-ui';
+  import { useWindowSize } from '@vueuse/core';
 
-const isDark = ref(true); // 新增一個布林值表示目前是不是暗黑主題
-const theme = ref(darkTheme);
+  const isDark = ref(true); // 新增一個布林值表示目前是不是暗黑主題
+  const theme = ref(darkTheme);
 
-const { width } = useWindowSize();
+  const { width } = useWindowSize();
 
-// 控制側邊欄收合
-const collapsed = ref(false);
+  // 控制側邊欄收合
+  const collapsed = ref(false);
 
-// 添加處理收合的函數
-const handleCollapse = (value) => {
-  collapsed.value = value;
-};
+  // 添加處理收合的函數
+  const handleCollapse = value => {
+    collapsed.value = value;
+  };
 
-onMounted(() => {
-  if (width.value <= 720) {
-    collapsed.value = true;
-  }
-});
+  onMounted(() => {
+    if (width.value <= 720) {
+      collapsed.value = true;
+    }
+  });
 
-const toggleTheme = () => {
-  isDark.value = !isDark.value;
-  theme.value = isDark.value ? darkTheme : lightTheme;
-};
+  const toggleTheme = () => {
+    isDark.value = !isDark.value;
+    theme.value = isDark.value ? darkTheme : lightTheme;
+  };
 </script>
 
 <template>
@@ -73,110 +73,110 @@ const toggleTheme = () => {
 </template>
 
 <style scoped>
-.app-container {
-  height: 100vh;
-  overflow: hidden;
-}
+  .app-container {
+    height: 100vh;
+    overflow: hidden;
+  }
 
-.main-layout {
-  height: calc(100vh - 64px);
-  overflow: hidden;
-}
+  .main-layout {
+    height: calc(100vh - 64px);
+    overflow: hidden;
+  }
 
-.content {
-  padding: 20px;
-  background-color: var(--n-color);
-  overflow-y: auto;
-  height: 100%;
-}
+  .content {
+    padding: 20px;
+    background-color: var(--n-color);
+    overflow-y: auto;
+    height: 100%;
+  }
 
-.sider {
-  background-color: var(--n-color);
-  height: 100%;
-  position: relative;
-}
+  .sider {
+    background-color: var(--n-color);
+    height: 100%;
+    position: relative;
+  }
 
-:deep(.n-layout-header) {
-  height: 64px;
-  padding: 0;
-}
+  :deep(.n-layout-header) {
+    height: 64px;
+    padding: 0;
+  }
 
-:deep(.n-layout-content) {
-  background-color: var(--n-color);
-}
+  :deep(.n-layout-content) {
+    background-color: var(--n-color);
+  }
 
-/* 滚动条样式 */
-.content::-webkit-scrollbar,
-.sider::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
+  /* 滚动条样式 */
+  .content::-webkit-scrollbar,
+  .sider::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
 
-.content::-webkit-scrollbar-track,
-.sider::-webkit-scrollbar-track {
-  background: var(--n-color);
-}
+  .content::-webkit-scrollbar-track,
+  .sider::-webkit-scrollbar-track {
+    background: var(--n-color);
+  }
 
-.content::-webkit-scrollbar-thumb,
-.sider::-webkit-scrollbar-thumb {
-  background-color: var(--n-scrollbar-color);
-  border-radius: 3px;
-}
+  .content::-webkit-scrollbar-thumb,
+  .sider::-webkit-scrollbar-thumb {
+    background-color: var(--n-scrollbar-color);
+    border-radius: 3px;
+  }
 
-:deep(.n-layout-sider-scroll-content) {
-  height: calc(100% - 48px);
-  overflow-y: auto;
-}
+  :deep(.n-layout-sider-scroll-content) {
+    height: calc(100% - 48px);
+    overflow-y: auto;
+  }
 
-:deep(.n-layout-sider-scroll-content::-webkit-scrollbar) {
-  width: 6px;
-  height: 6px;
-}
+  :deep(.n-layout-sider-scroll-content::-webkit-scrollbar) {
+    width: 6px;
+    height: 6px;
+  }
 
-:deep(.n-layout-sider-scroll-content::-webkit-scrollbar-track) {
-  background: var(--n-color);
-}
+  :deep(.n-layout-sider-scroll-content::-webkit-scrollbar-track) {
+    background: var(--n-color);
+  }
 
-:deep(.n-layout-sider-scroll-content::-webkit-scrollbar-thumb) {
-  background-color: var(--n-scrollbar-color);
-  border-radius: 3px;
-}
+  :deep(.n-layout-sider-scroll-content::-webkit-scrollbar-thumb) {
+    background-color: var(--n-scrollbar-color);
+    border-radius: 3px;
+  }
 
-:deep(.n-layout-sider-trigger) {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 48px;
-  background-color: var(--n-color);
-  border-top: 1px solid var(--n-border-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
-}
+  :deep(.n-layout-sider-trigger) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background-color: var(--n-color);
+    border-top: 1px solid var(--n-border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
+  }
 
-/* 滑入滑出動畫 */
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.3s ease;
-}
+  /* 滑入滑出動畫 */
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: all 0.3s ease;
+  }
 
-.fade-enter-from {
-  opacity: 0;
-  transform: translateX(30px);
-}
+  .fade-enter-from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
 
-.fade-leave-to {
-  opacity: 0;
-  transform: translateX(-30px);
-}
+  .fade-leave-to {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
 
-.fade-enter-to,
-.fade-leave-from {
-  opacity: 1;
-  transform: translateX(0);
-}
+  .fade-enter-to,
+  .fade-leave-from {
+    opacity: 1;
+    transform: translateX(0);
+  }
 </style>
