@@ -4,6 +4,7 @@ import Introdution from '../views/introdution.vue';
 import Project from '../views/project.vue';
 import Contact from '../views/contact.vue';
 import Demo from '../views/demo.vue';
+import Categories from '../views/Categories.vue';
 const router = createRouter({
   history: createWebHistory('/personal-web/'),
   routes: [
@@ -31,6 +32,11 @@ const router = createRouter({
       path: '/demo',
       name: 'demo',
       component: Demo
+    },
+    {
+      path: '/categories/tech',
+      name: 'categories',
+      component: Categories
     }
   ]
 });

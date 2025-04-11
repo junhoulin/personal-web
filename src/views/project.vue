@@ -70,26 +70,12 @@
           </n-card>
         </n-grid-item>
       </n-grid>
-      <n-back-top :right="70" />
+      <n-back-top :right="20" />
     </n-space>
   </div>
 </template>
 
 <script setup>
-  import {
-    NCard,
-    NSpace,
-    NGrid,
-    NGridItem,
-    NH1,
-    NH2,
-    NText,
-    NDivider,
-    NButton,
-    NIcon,
-    NImage,
-    NTag
-  } from 'naive-ui';
   import { LogoGithub, GlobeOutline } from '@vicons/ionicons5';
   import { useWindowSize } from '@vueuse/core';
   import { computed } from 'vue';
